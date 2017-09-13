@@ -194,12 +194,12 @@ function wait_for_workers_alive {
         # Scrape the master web UI for the number of alive workers
         # This may be replaced with something based on metrics ...
         workers=$(curl -s -X GET $masterweb | grep -e "[Aa]live.*[Ww]orkers")
-        cnt=($(echo $workers | sed "s,[^0-9],\\ ,g"))
-        echo "Waiting for spark workers (${cnt[-1]}/$desired alive) ..."
-        if [ ${cnt[-1]} -eq "$desired" ]; then
-	    break
-	fi
-        sleep 5
+        #cnt=($(echo $workers | sed "s,[^0-9],\\ ,g"))
+        #echo "Waiting for spark workers (${cnt[-1]}/$desired alive) ..."
+        #if [ ${cnt[-1]} -eq "$desired" ]; then
+	#    break
+	#fi
+        #sleep 5
         # If someone scales down the cluster while we're still waiting
         # then we need to know what the real target is so check again
         line=$($CLI get $OSHINKO_CLUSTER_NAME $CLI_ARGS)
